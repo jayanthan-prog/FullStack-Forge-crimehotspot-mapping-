@@ -42,7 +42,7 @@ npm or yarn
 
 #Docs https://docs.google.com/document/d/1qD4dkzJca0FtViJ-aQ5No2evbQCkDl4dwPAd0x9YOYY/edit?usp=sharing
 
-Clone the Repository
+#Clone the Repository
 git clone https://github.com/yourusername/crimehotspotmapping.git
 cd crimehotspotmapping
 npm i

@@ -1,19 +1,63 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Map, { Marker, Popup } from 'react-map-gl';
-import { MapPin, Calendar, Users } from 'lucide-react';
-import { MOCK_CRIME_DATA } from '../types/crime';
+import { Calendar, Users } from 'lucide-react';
+import { MapPin } from "lucide-react";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiZGVtby11c2VyIiwiYSI6ImNscDFtbm1qZzBnOHoybG4ydW96YmxqemkifQ.VoSJ7RH_4YB0LbuOYHYgHw';
+const MAPBOX_TOKEN = 'pk.eyJ1Ijoic21pbGVlZSIsImEiOiJjbThuejMzMjIwNHJvMmpzNXd6MXNtZnM4In0.rsQhRY5hN4lS3SeCL0ZXRA';
 
 const CrimeMap: React.FC = () => {
+  // Thoothukudi coordinates (centered on the district)
   const [viewState, setViewState] = useState({
     latitude: 8.7642,
     longitude: 78.1348,
-    zoom: 12,
+    zoom: 10,  // Adjusted zoom level to show more of the district
   });
+
   const [selectedHotspot, setSelectedHotspot] = useState<any>(null);
   const [showPatrolModal, setShowPatrolModal] = useState(false);
+
+  // Mock data for Thoothukudi district
+  const MOCK_CRIME_DATA = {
+    hotspots: [
+      { 
+        id: 1, 
+        lat: 8.7642, 
+        lng: 78.1348, 
+        location: "Thoothukudi City", 
+        incidents: 15 
+      },
+      { 
+        id: 2, 
+        lat: 8.5833, 
+        lng: 78.1167, 
+        location: "Tiruchendur", 
+        incidents: 8 
+      },
+      { 
+        id: 3, 
+        lat: 8.8000, 
+        lng: 78.1500, 
+        location: "Kayalpattinam", 
+        incidents: 5 
+      },
+      { 
+        id: 4, 
+        lat: 8.6333, 
+        lng: 77.9833, 
+        location: "Srivaikuntam", 
+        incidents: 7 
+      },
+      { 
+        id: 5, 
+        lat: 8.7167, 
+        lng: 78.0833, 
+        location: "Ettayapuram", 
+        incidents: 4 
+      }
+    ]
+  };
 
   return (
     <motion.div
@@ -24,8 +68,8 @@ const CrimeMap: React.FC = () => {
     >
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">Crime Map</h1>
-          <p className="mt-2 text-gray-600">Interactive map of crime hotspots</p>
+          <h1 className="text-3xl font-bold text-gray-800">Thoothukudi Crime Map</h1>
+          <p className="mt-2 text-gray-600">Interactive map of crime hotspots in Thoothukudi district</p>
         </div>
         <button
           onClick={() => setShowPatrolModal(true)}
@@ -59,6 +103,7 @@ const CrimeMap: React.FC = () => {
                   <MapPin className="text-red-500 w-8 h-8 -translate-x-1/2 -translate-y-1/2 cursor-pointer hover:text-red-600 transition-colors" />
                 </Marker>
               ))}
+              
               {selectedHotspot && (
                 <Popup
                   latitude={selectedHotspot.lat}
@@ -66,10 +111,12 @@ const CrimeMap: React.FC = () => {
                   onClose={() => setSelectedHotspot(null)}
                   closeButton={true}
                   closeOnClick={false}
-                 >
+                  anchor="bottom" 
+                >
                   <div className="p-4">
                     <h3 className="font-semibold text-gray-800">{selectedHotspot.location}</h3>
                     <p className="text-sm text-gray-600">{selectedHotspot.incidents} incidents reported</p>
+                    <p className="text-xs text-gray-500 mt-1">Thoothukudi District</p>
                   </div>
                 </Popup>
               )}
@@ -77,6 +124,7 @@ const CrimeMap: React.FC = () => {
           </div>
         </div>
 
+        {/* Rest of your component remains the same */}
         <div className="space-y-6">
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <h2 className="text-lg font-semibold mb-4 text-gray-800">Hotspot Analysis</h2>
@@ -121,6 +169,7 @@ const CrimeMap: React.FC = () => {
         </div>
       </div>
 
+      {/* Modal remains the same */}
       {showPatrolModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <motion.div

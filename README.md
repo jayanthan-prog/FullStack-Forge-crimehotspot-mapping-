@@ -44,7 +44,7 @@ npm or yarn
 
 #Clone the Repository
 
-#git clone https://github.com/yourusername/crimehotspotmapping.git
+#git clone https://github.com/jayanthan-prog/FullStack-Forge-crimehotspot-mapping-.git
 
 #cd crimehotspotmapping
 

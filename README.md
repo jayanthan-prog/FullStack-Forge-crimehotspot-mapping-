@@ -28,6 +28,7 @@ Generates detailed reports and visual dashboards to assist in policy-making, res
 Installation
 To run the CrimeHotspotMapping system locally, follow these steps as listed below:
 
+
 Prerequisites
 Ensure you have the following software installed on your machine:
 

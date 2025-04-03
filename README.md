@@ -54,7 +54,7 @@ Ensure you have the following software installed on your machine:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/crimehotspotmapping.git
+git clone  https://github.com/jayanthan-prog/FullStack-Forge-crimehotspot-mapping-.git
 cd crimehotspotmapping
 npm i
 npm run dev 
